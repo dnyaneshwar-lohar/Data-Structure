@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 using namespace std;
@@ -18,6 +18,7 @@ void Display(struct Array arr)
         printf("%d  ", arr.A[i]);
     }
 }
+
 void Append(struct Array *arr, int x)
 {
     if(arr->length<arr->size)
@@ -54,6 +55,7 @@ int Delete(struct Array *arr,int index)
 
     return 0; 
 }
+
 void swap(int *x,int *y)
 {
     int temp;
@@ -209,32 +211,140 @@ int RSum(struct Array *arr,int n)
     else
         return RSum(arr,n-1) + arr->A[n];
 }
+
+void Reverse(struct Array *arr)
+{
+    int B[arr->length];
+    for (int i = arr->length-1,j = 0; i >= 0; i--,j++)
+    {
+        B[j]=arr->A[i];
+    }
+    for (int i = 0; i < arr->length; i++)
+    {
+        arr->A[i]=B[i];
+    }
+    
+}
+
+void Reverse2(struct Array *arr)
+{
+    int temp;
+    for (int i = 0,j=arr->length-1; j>i; j--,i++)
+    {
+        // temp = arr->A[i];
+        // arr->A[i]=arr->A[j];
+        // arr->A[j]=temp;
+
+        swap(arr->A[i],arr->A[j]);
+    }
+}
+
+void Leftshift(struct Array *arr)
+{
+    for (int i = 0; i < arr->length; i++)
+    {
+        if(i==arr->length-1)
+            arr->A[i]=0;
+        else
+            arr->A[i]=arr->A[i+1];
+    }
+    
+}
+
+void Leftrotate(struct Array *arr)
+{
+    int f=arr->A[0];
+    for (int i = 0; i < arr->length; i++)
+    {
+        if(i==arr->length-1)
+            arr->A[i]=f;
+        else
+            arr->A[i]=arr->A[i+1];
+    }
+    
+}
+
+void InsertSort(struct Array *arr,int x)
+{
+    int i=arr->length-1;
+
+    if(arr->length == arr->size)
+        return;
+    while(i>0 && arr->A[i]>x)
+    {
+        arr->A[i+1] = arr->A[i];
+        i--;
+    }
+    arr->A[i+1]=x;
+    arr->length++;
+}
+
+int isSorted(struct Array *arr)
+{
+    int i;
+    for(i=0;i<arr->length-1;i++)
+    {
+        if (arr->A[i]>arr->A[i+1]) return -1;
+    }
+    return 1;
+}
+
+void Rearrange(struct Array *arr)
+{
+    int i,j;
+    i=0;
+    j=arr->length-1;
+
+    while (i<j)
+    {
+        while (arr->A[i]<0){i++;}
+        while (arr->A[j]>=0){j--;}
+        if(i<j)swap(arr->A[i],arr->A[ j]);
+    }
+    
+}
+
 int main()
 {
-    struct Array arr = {{4, 8, 9, 3, 5},20,5};
+    struct Array arr = {{2,-3,25,10,-15,-7},10,6};
     int p[5]={1,2,3,4,5};
     // Append(&arr,10);
+
     // Insert(&arr,4,9);
+
     // printf("%d",Delete(&arr,3));
+
     // printf("%d\n",LinearSearch(arr,9));
     // printf("%d\n",LinearSearch2(&arr,9));
     // printf("%d\n",LinearSearch3(&arr,9));
-    printf("%d\n",BinarySearch(arr,4));
-    printf("%d\n",RBinSearch(arr.A,0,arr.length,4));
+    
+    // printf("%d\n",BinarySearch(arr,4));
+    // printf("%d\n",RBinSearch(arr.A,0,arr.length,4));
 
-    printf("%d\n",Get(&arr, 4));
-    Set(&arr,4,12);
+    // printf("%d\n",Get(&arr, 4));
+    // Set(&arr,4,12);
 
-    printf("%d\n",Max(&arr));
-    printf("%d\n",Min(&arr));
+    // printf("%d\n",Max(&arr));
+    // printf("%d\n",Min(&arr));
 
-    printf("%d\n",Sum(&arr));
-    printf("%d\n",RSum(&arr,arr.length-1));
+    // printf("%d\n",Sum(&arr));
+    // printf("%d\n",RSum(&arr,arr.length-1));
+    
+    // Reverse(&arr);
+    // Reverse2(&arr);
 
+    // Leftshift(&arr);
+    // Leftshift(&arr);
+    // Leftrotate(&arr);
+    // Leftrotate(&arr);
+
+    // InsertSort(&arr,9);
+    // isSorted(&arr);
+
+    Rearrange(&arr);
     Display(arr);
 
-
-    printf("%d\n", arr.length);
+    // printf("%d\n", arr.length);
 
     return 0;
 }
