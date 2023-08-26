@@ -299,7 +299,7 @@ void Rearrange(struct Array *arr)
     {
         while (arr->A[i]<0){i++;}
         while (arr->A[j]>=0){j--;}
-        if(i<j)swap(arr->A[i],arr->A[ j]);
+        if(i<j)swap(arr->A[i],arr->A[j]);
     }
     
 }
