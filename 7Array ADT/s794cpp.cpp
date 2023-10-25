@@ -143,7 +143,7 @@ int BinarySearch(int key)
 int RBinSearch(int a[],int l, int h, int key)
 {
     int mid;
-    if(l<h)
+    if(l<=h)
     {
         mid=(l+h)/2;
         if(key==a[mid])
@@ -336,7 +336,7 @@ int main()
         printf("2. Delete\n");
         printf("3. Search\n");
         printf("4. Sum\n");
-        printf("5. Display\n");
+        printf("5. Display \n");
         printf("6. Exit\n");
 
         printf("Enter your choice ");
