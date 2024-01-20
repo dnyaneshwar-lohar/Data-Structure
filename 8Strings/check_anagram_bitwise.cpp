@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
         HB = HB|Ba;
     }
 
-    if (HA == HB && LA == LB)
+    if (HA == HB && LA == LB && A[LA] == '\0' && B[LB] == '\0')
     {
         cout<<"Anagram"<<endl;
     }
@@ -31,9 +31,5 @@ int main(int argc, char const *argv[])
     {
         cout<<"Not Anagram"<<endl;
     }
-        
-        
-
-    
     return 0;
 }
